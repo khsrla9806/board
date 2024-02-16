@@ -3,3 +3,10 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+  profiles:
+    active: dev
+
+mybatis:
+  mapper-locations: mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # Camel Case -> (DB)

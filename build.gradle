@@ -25,6 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter'
 
+	// Database Dependency
+	implementation 'mysql:mysql-connector-java:8.0.22'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+
 	// JSP Dependency
 	implementation 'javax.servlet:jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
