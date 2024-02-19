@@ -1,4 +1,4 @@
-package com.board.boardproject.controller;
+package com.board.boardproject.web.api;
 
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.service.MemberService;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-public class MemberController {
+public class MemberApiController {
 
     private final MemberService memberService;
 
