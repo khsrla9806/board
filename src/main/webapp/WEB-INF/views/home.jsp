@@ -3,31 +3,34 @@
 
 <%@ include file="./layout/header.jsp"%>
 
-<h1>CONTAINER</h1>
-
 <div class="container">
+	<!-- board -->
 	<div class="content">
-		<div class="content-element">
-			content1
+		<!-- board seach area -->
+		<div id="board-search">
+			<div class="search-window">
+				<form action="">
+					<div class="search-wrap">
+						<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+						<button type="submit" class="btn">검색</button>
+					</div>
+				</form>
+			</div>
 		</div>
-        <div class="content-element">
-        	content2
-        </div>
-        <div class="content-element">
-        	content3
-        </div>
-        <div class="content-element">
-        	content4
-        </div>
+		<!-- board list area -->
+		<div id="board-list">
+			<div class="content-element">content1</div>
+			<div class="content-element">content2</div>
+			<div class="content-element">content3</div>
+			<div class="content-element">content4</div>
+		</div>
 	</div>
-    <div class="side">
-    	<div class="user-box">
-    		user-box
-    	</div>
-        <div class="side-box">
-        	side-box
-        </div>
-    </div>
+	
+	<!-- side -->
+	<div class="side">
+		<div class="user-box">user-box</div>
+		<div class="side-box">side-box</div>
+	</div>
 </div>
 
 <%@ include file="./layout/footer.jsp"%>

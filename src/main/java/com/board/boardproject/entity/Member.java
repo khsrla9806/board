@@ -1,6 +1,8 @@
 package com.board.boardproject.entity;
 
 
+import java.time.LocalDateTime;
+
 import lombok.*;
 
 @Getter
@@ -12,4 +14,6 @@ public class Member {
     private Long id;
     private String nickname;
     private String password;
+    private LocalDateTime createdDate;
+	private LocalDateTime modifiedDate;
 }
