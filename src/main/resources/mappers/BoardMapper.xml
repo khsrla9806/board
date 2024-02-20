@@ -11,6 +11,11 @@
         INNER JOIN member m ON m.id = b.member_id AND b.id = #{id}
     </select>
     
+    <insert id="save" parameterType="com.board.boardproject.entity.Board">
+		INSERT INTO board(title, content, member_id, created_date, modified_date)
+		VALUES(#{title}, #{content}, #{member.id}, #{createdDate}, #{modifiedDate})
+	</insert>
+    
     <resultMap id="Member" type="com.board.boardproject.entity.Member">
 		<id column="id" property="id" />
 		<result column="nickname" property="nickname" />

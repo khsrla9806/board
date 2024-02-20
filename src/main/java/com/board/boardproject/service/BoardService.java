@@ -3,7 +3,9 @@ package com.board.boardproject.service;
 import org.springframework.stereotype.Service;
 
 import com.board.boardproject.entity.Board;
+import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.BoardMapper;
+import com.board.boardproject.web.dto.CreateBoardRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,5 +22,13 @@ public class BoardService {
 		}
 		
 		return board;
+	}
+	
+	/**
+	 * 게시글 생성
+	 */
+	public void createBoard(CreateBoardRequestDto dto, Member member) {
+		Board board = dto.toEntity(member);
+		boardMapper.save(board);
 	}
 }

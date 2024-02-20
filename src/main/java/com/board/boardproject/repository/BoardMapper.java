@@ -7,4 +7,5 @@ import com.board.boardproject.entity.Board;
 @Mapper
 public interface BoardMapper {
 	Board findById(Long id);
+	void save(Board board);
 }
