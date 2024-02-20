@@ -18,10 +18,7 @@
 		</div>
 		<!-- board list area -->
 		<div id="board-list">
-			<div class="content-element">content1</div>
-			<div class="content-element">content2</div>
-			<div class="content-element">content3</div>
-			<div class="content-element">content4</div>
+			
 		</div>
 	</div>
 	
@@ -31,5 +28,7 @@
 		<div class="side-box">side-box</div>
 	</div>
 </div>
+
+<script src="/js/board.js"></script>
 
 <%@ include file="./layout/footer.jsp"%>
