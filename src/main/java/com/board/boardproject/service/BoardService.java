@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.board.boardproject.entity.Board;
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.BoardRepository;
+import com.board.boardproject.web.dto.BoardDetailResponseDto;
 import com.board.boardproject.web.dto.BoardResponseDto;
 import com.board.boardproject.web.dto.CreateBoardRequestDto;
 
@@ -17,16 +18,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BoardService {
 	private final BoardRepository boardRepository;
-	
-	public Board getBoard(Long id) {
-		Board board = boardRepository.findById(id);
-		
-		if (board == null) {
-			throw new RuntimeException("NOT FOUND");
-		}
-		
-		return board;
-	}
 	
 	/**
 	 * 게시글 생성
@@ -44,5 +35,14 @@ public class BoardService {
 		
 		return boards.stream().map(BoardResponseDto::fromEntity)
 				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * 게시글 상세 조회
+	 */
+	public BoardDetailResponseDto getBoard(Long boardId) {
+		Board board = boardRepository.findById(boardId);
+		
+		return BoardDetailResponseDto.fromEntity(board);
 	}
 }

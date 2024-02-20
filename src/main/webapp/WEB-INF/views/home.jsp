@@ -24,8 +24,14 @@
 	
 	<!-- side -->
 	<div class="side">
-		<div class="user-box">user-box</div>
-		<div class="side-box">side-box</div>
+		<div class="user-box">
+			<div class="user-nickname">
+				USER NICKNAME
+			</div>
+			
+			<button class="classic-btn" type="button" onClick="location.href='/board/create-form'">게시글 작성하기</button>
+		</div>
+		<div class="side-box">SIDE AREA</div>
 	</div>
 </div>
 

@@ -34,7 +34,7 @@ function getBoardItem(board) {
 					<div class="board-writer-nickname">
 						작성자: <span id="board-writer-nickanme-value">${board.writerNickname}</span>
 					</div>
-					<button class="classic-btn">
+					<button type="button" onClick="location.href='/board/${board.id}'" class="classic-btn">
 						게시글 상세보기
 					</button>
 				</div>
