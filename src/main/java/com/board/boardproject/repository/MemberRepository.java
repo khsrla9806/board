@@ -4,6 +4,6 @@ import com.board.boardproject.entity.Member;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface MemberMapper {
+public interface MemberRepository {
     Member findById(Long id);
 }
