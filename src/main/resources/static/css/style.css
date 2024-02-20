@@ -1,3 +1,5 @@
+/* home */
+
 * {
     margin: 0;
     padding: 0;
@@ -98,3 +100,37 @@
     height: 630px;
     background-color: lightblue;
 }
+
+/* board-create */
+
+.board-create-form {
+	margin: 0 auto;
+}
+
+#title {
+	width: 490px;
+	height: 25px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px #BDBDBD solid;
+}
+
+#content {
+	width: 490px;
+	height: 300px;
+	margin-bottom: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px #BDBDBD solid;
+}
+
+#btn {
+	width: 500px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px #BDBDBD solid;
+}
+
+

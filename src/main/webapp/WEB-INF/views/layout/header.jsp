@@ -20,6 +20,6 @@
 <body>
 
 	<div class="header">
-		<h1>HEADER</h1>
+		<h1>게시판</h1>
 	</div>
 	
