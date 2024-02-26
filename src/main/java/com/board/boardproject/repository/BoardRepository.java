@@ -1,6 +1,7 @@
 package com.board.boardproject.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,7 +18,7 @@ public interface BoardRepository {
 	/**
 	 * 게시글 단건 조회
 	 */
-	Board findById(Long id);
+	Optional<Board> findById(Long id);
 	
 	/**
 	 * 게시글 저장
