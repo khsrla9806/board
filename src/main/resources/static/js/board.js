@@ -58,69 +58,9 @@ function getBoardsPage(page) {
 
 getBoardsPage();
 
-function setPagination(page, response) {
-	
-	// pagination UI 구성을 위해 필요한 정보들
-	const maxSize = 5;
-	const startPage = Math.floor(page / maxSize) * maxSize + 1;
-	const lastPage = startPage + (maxSize - 1) > response.totalPages ? response.totalPages : startPage + (maxSize - 1);
-	
-	// 이전 블럭이 존재하지 않는 경우
-	if (startPage == 1) {
-		document.getElementsByClassName("pprev").style.visibility = 'hidden';
-	} else {
-		document.getElementsByClassName("pprev").style.visibility = 'visible';
-	}
-	
-	// 이전 페이지가 존재하지 않는 경우
-	if (page == 0) {
-		document.getElementsByClassName("prev").style.visibility = 'hidden';
-	} else {
-		document.getElementsByClassName("prev").style.visibility = 'visible';
-	}
-	
-	// 다음 블럭이 존재하는 경우
-	if (lastPage >= response.totalPages) {
-		document.getElementsByClassName("nnext").style.visibility = 'hidden';
-	} else {
-		document.getElementsByClassName("nnext").style.visibility = 'visible';
-	}
-	
-	// 다음 페이지가 존재하지 않는 경우
-	if (page == response.totalPages - 1) {
-		document.getElementsByClassName("next").style.visibility = 'hidden';
-	} else {
-		document.getElementsByClassName("next").style.visibility = 'visible';
-	}
-	
-	let pagination = `
-		<a class="arrow pprev" href="javascript:void(0)" onClick="getBoardsPage(${page - 1})"></a>
-      	<a class="arrow prev" href="javascript:void(0)" onClick="getBoardsPage(${page - 1})"></a>
-	`;
-	
-	
-	for (let i = startPage; i <= lastPage; i++) {
-		
-		if (response.pageable.pageNumber + 1 == i) {
-			pagination += `
-				<a href="javascript:void(0)" onClick="getBoardsPage(${i - 1})" class="active">${i}</a>
-			`;	
-		} else {
-			pagination += `
-				<a href="javascript:void(0)" onClick="getBoardsPage(${i - 1})">${i}</a>
-			`;	
-		}
-	}
-	
-	
-	pagination += `
-		<a class="arrow next" href="javascript:void(0)" onClick="getBoardsPage(${page + 1})"></a>
-		<a class="arrow nnext" href="javascript:void(0)" onClick="getBoardsPage(${page + 1})"></a>
-	`;
-	
-	$('#page_nation').empty().append(pagination);
-}
-
+/**
+ * board 데이터 응답 형태를 받아서 HTML에 넣어줄 요소를 반환하는 함수
+ */
 function getBoardItem(board) {
 	let item = `
 			<div class="content-element">
@@ -149,3 +89,91 @@ function getBoardItem(board) {
 	
 	return item;
 }
+
+/**
+ * 페이지네이션 버튼 구성해주는 함수
+ */
+function setPagination(page, response) {
+	
+	// pagination UI 구성을 위해 필요한 정보들
+	const maxSize = 5;
+	const startPage = Math.floor(page / maxSize) * maxSize + 1;
+	const lastPage = startPage + (maxSize - 1) > response.totalPages ? response.totalPages : startPage + (maxSize - 1);
+	
+	let pagination = `
+		<a class="arrow pprev" id="pprev" href="javascript:void(0)" onClick="getBoardsPage(${startPage - 2})"></a>
+      	<a class="arrow prev" id="prev" href="javascript:void(0)" onClick="getBoardsPage(${page - 1})"></a>
+	`;
+	
+	
+	for (let i = startPage; i <= lastPage; i++) {
+		
+		if (response.pageable.pageNumber + 1 == i) {
+			pagination += `
+				<a href="javascript:void(0)" onClick="getBoardsPage(${i - 1})" class="active">${i}</a>
+			`;	
+		} else {
+			pagination += `
+				<a href="javascript:void(0)" onClick="getBoardsPage(${i - 1})">${i}</a>
+			`;	
+		}
+	}
+	
+	
+	pagination += `
+		<a class="arrow next" id="next" href="javascript:void(0)" onClick="getBoardsPage(${page + 1})"></a>
+		<a class="arrow nnext" id="nnext" href="javascript:void(0)" onClick="getBoardsPage(${startPage + maxSize - 1})"></a>
+	`;
+	
+	$('#page_nation').empty().append(pagination);
+	
+	setPaginationArrowVisible(page + 1, startPage, lastPage, response.totalPages);
+}
+
+/**
+ * 페이지네이션 앞,뒤 화살표 버튼 보임 상태 설정
+ */
+function setPaginationArrowVisible(currentPage, startPage, lastPage, totalPages) {
+	// 이전 블럭이 존재하지 않는 경우 : << 버튼을 숨기기
+	if (startPage == 1) {
+		switchHidden("pprev");
+	} else {
+		switchVisible("pprev")
+	}
+	
+	// 이전 페이지가 존재하지 않는 경우 : < 버튼을 숨기기
+	if (currentPage == 1) {
+		switchHidden("prev");
+	} else {
+		switchVisible("prev");
+	}
+	
+	// 다음 블럭이 존재하는 경우 : >> 버튼을 숨기기
+	if (lastPage >= totalPages) {
+		switchHidden("nnext");
+	} else {
+		switchVisible("nnext");
+	}
+	
+	// 다음 페이지가 존재하지 않는 경우 : > 버튼을 숨기기
+	if (currentPage == totalPages) {
+		switchHidden("next");
+	} else {
+		switchVisible("next");
+	}
+}
+
+/**
+ * Dom 요소의 Id를 받아서 visiblility를 hidden으로 설정
+ */
+const switchHidden = (elementId) => {
+	document.getElementById(elementId).style.visibility = "hidden";
+}
+
+/**
+ * Dom 요소의 Id를 받아서 visiblility를 visible로 설정
+ */
+const switchVisible = (elementId) => {
+	document.getElementById(elementId).style.visibility = "visible";
+}
+
