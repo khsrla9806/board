@@ -1,11 +1,12 @@
 package com.board.boardproject.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.board.boardproject.common.domain.Pagination;
 import com.board.boardproject.common.exception.ErrorMessage;
 import com.board.boardproject.common.exception.NotFoundException;
 import com.board.boardproject.entity.Board;
@@ -39,6 +40,20 @@ public class BoardService {
 		return boards.stream().map(BoardResponseDto::fromEntity)
 				.collect(Collectors.toList());
 	}
+	
+	/**
+	 * 게시글 페이징 조회
+	 */
+	public Pagination<BoardResponseDto> getBoardsPage(Pageable pageable) {
+		List<BoardResponseDto> boards = boardRepository.findAllPage(pageable).stream()
+				.map(BoardResponseDto::fromEntity)
+				.collect(Collectors.toList());
+		
+		int elementCount = boardRepository.getTotalElementCount();
+		
+		return Pagination.of(boards, pageable, elementCount);
+	}
+	
 	
 	/**
 	 * 게시글 상세 조회

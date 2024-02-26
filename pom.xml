@@ -34,6 +34,12 @@
 			<version>3.0.0</version>
 		</dependency>
 		
+		<!-- Spring Data Dependency -->
+		<dependency>
+		      <groupId>org.springframework.data</groupId>
+		      <artifactId>spring-data-commons</artifactId>
+		</dependency>
+		
 		<!-- JSP Dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

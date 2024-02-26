@@ -20,6 +20,13 @@
 		<div id="board-list">
 			
 		</div>
+		
+		<!-- pagination area -->
+		<div id="page_wrap">
+			<div id="page_nation" class="page_nation">
+			
+		   </div>
+		</div>
 	</div>
 	
 	<!-- side -->
