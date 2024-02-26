@@ -18,19 +18,23 @@ function getBoards() {
 
 function getBoardsPage(page) {
 	
+	// 첫 번째 페이지인 경우 예외처리
 	if (page < 0) {
 		alert("첫 번째 페이지입니다.");
 		return;
 	}
 	
-	if (page == undefined) {
+	// page에 아무것도 들어오지 않은 경우 예외 처리
+	if (page == undefined || page < 0) {
 		page = 0;
 	}
+	
 	$.ajax({
 		type: 'get',
 		url: `/api/v1/boards/page?page=${page}`
 	}).done(response => {
 		
+		// 마지막 페이지인 경우 예외처리
 		if (page >= response.totalPages) {
 			alert("마지막 페이지입니다.");
 			return;
@@ -60,6 +64,34 @@ function setPagination(page, response) {
 	const maxSize = 5;
 	const startPage = Math.floor(page / maxSize) * maxSize + 1;
 	const lastPage = startPage + (maxSize - 1) > response.totalPages ? response.totalPages : startPage + (maxSize - 1);
+	
+	// 이전 블럭이 존재하지 않는 경우
+	if (startPage == 1) {
+		document.getElementsByClassName("pprev").style.visibility = 'hidden';
+	} else {
+		document.getElementsByClassName("pprev").style.visibility = 'visible';
+	}
+	
+	// 이전 페이지가 존재하지 않는 경우
+	if (page == 0) {
+		document.getElementsByClassName("prev").style.visibility = 'hidden';
+	} else {
+		document.getElementsByClassName("prev").style.visibility = 'visible';
+	}
+	
+	// 다음 블럭이 존재하는 경우
+	if (lastPage >= response.totalPages) {
+		document.getElementsByClassName("nnext").style.visibility = 'hidden';
+	} else {
+		document.getElementsByClassName("nnext").style.visibility = 'visible';
+	}
+	
+	// 다음 페이지가 존재하지 않는 경우
+	if (page == response.totalPages - 1) {
+		document.getElementsByClassName("next").style.visibility = 'hidden';
+	} else {
+		document.getElementsByClassName("next").style.visibility = 'visible';
+	}
 	
 	let pagination = `
 		<a class="arrow pprev" href="javascript:void(0)" onClick="getBoardsPage(${page - 1})"></a>
