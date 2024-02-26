@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateBoardRequestDto {
+public class BoardCreateRequestDto {
 	private String title;
 	private String content;
 	

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.service.BoardService;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
-import com.board.boardproject.web.dto.CreateBoardRequestDto;
+import com.board.boardproject.web.dto.BoardCreateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class BoardController {
 	 * 게시글 업로드
 	 */
 	@PostMapping("/board")
-	public String createPost(CreateBoardRequestDto dto) {
+	public String createPost(BoardCreateRequestDto dto) {
 		
 		// TODO: 임시 사용자 객체
 		Member member = Member.builder().id(1L).build();

@@ -10,7 +10,7 @@ import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.BoardRepository;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
 import com.board.boardproject.web.dto.BoardResponseDto;
-import com.board.boardproject.web.dto.CreateBoardRequestDto;
+import com.board.boardproject.web.dto.BoardCreateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ public class BoardService {
 	/**
 	 * 게시글 생성
 	 */
-	public void createBoard(CreateBoardRequestDto dto, Member member) {
+	public void createBoard(BoardCreateRequestDto dto, Member member) {
 		Board board = dto.toEntity(member);
 		boardRepository.save(board);
 	}
