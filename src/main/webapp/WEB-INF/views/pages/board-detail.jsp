@@ -2,6 +2,10 @@
 
 <%@ include file="../layout/header.jsp"%>
 
+<!-- JSP에서 개행문자를 <br>로 바꿔서 처리하기 위한 설정 (가장 위에 작성) -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
+
 <div class="container">
 	<div class="board-detail">
 		<p>게시글 제목</p>
@@ -11,7 +15,7 @@
 		
 		<p>게시글 내용</p>
 		<div class="board-content">
-			${boardDetail.content}
+			${fn:replace(boardDetail.content, replaceChar, "<br>")} <!-- JSP에서는 개행문자가 먹지 않는다. <br>로 변환 -->
 		</div>
 		
 		<p>작성일시</p>
@@ -37,11 +41,13 @@
 			</div>
 			
 			<div class="modify-btn-area">
-				<button class="classic-btn" type="button" onClick="#">게시글 수정</button>
-				<button class="classic-btn" type="button" onClick="#">게시글 삭제</button>
+				<button class="classic-btn" type="button" onClick="javascript:location.href='/board/update-form/${boardDetail.id}'">게시글 수정</button>
+				<button class="classic-btn" type="button" onClick="deleteBoard(${boardDetail.id})">게시글 삭제</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<script src="/js/board-detail.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>

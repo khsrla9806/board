@@ -14,6 +14,7 @@ import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.BoardRepository;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
 import com.board.boardproject.web.dto.BoardResponseDto;
+import com.board.boardproject.web.dto.BoardUpdateRequestDto;
 import com.board.boardproject.web.dto.BoardCreateRequestDto;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,24 @@ public class BoardService {
 	public void createBoard(BoardCreateRequestDto dto, Member member) {
 		Board board = dto.toEntity(member);
 		boardRepository.save(board);
+	}
+	
+	/**
+	 * 게시글 수정
+	 */
+	public void updateBoard(BoardUpdateRequestDto dto) {
+		Board board = boardRepository.findById(dto.getBoardId())
+				.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
+		
+		board.update(dto.getTitle(), dto.getContent());
+		boardRepository.update(board);
+	}
+	
+	/**
+	 * 게시글 삭제
+	 */
+	public void deleteBoard(Long boardId) {
+		boardRepository.deleteById(boardId);
 	}
 	
 	/**

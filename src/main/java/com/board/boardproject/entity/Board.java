@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +19,10 @@ public class Board {
 	private Member member;
 	private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
+	
+	public void update(String title, String content) {
+		this.title = title;
+		this.content = content;
+		this.modifiedDate = LocalDateTime.now();
+	}
 }

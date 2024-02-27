@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<form class="board-create-form" name="board-create-form" method="post" action="/board">
+	<form class="board-create-form" name="board-create-form" method="post" action="/create-board">
 		<h1>게시글 등록</h1>
 		
 		<div>
