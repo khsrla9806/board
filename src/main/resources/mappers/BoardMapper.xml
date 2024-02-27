@@ -5,7 +5,7 @@
 <mapper namespace="com.board.boardproject.repository.BoardRepository">
 
 	<!-- 게시글 목록 페이징 조회 -->
-	<select id="findAll" parameterType="org.springframework.data.domain.Pageable" resultMap="Board">
+	<select id="findAll" parameterType="com.board.boardproject.web.dto.BoardGetRequestDto" resultMap="Board">
 		SELECT
 			b.id, b.title, b.content, b.created_date, b.modified_date,
         	m.id 'm_id',
@@ -15,12 +15,19 @@
         	m.modified_date 'm_modified_date'
 		FROM board b
 		INNER JOIN member m ON m.id = b.member_id
+		<if test="keyword != null and !keyword.equals('')">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
 		ORDER BY b.id DESC
-		LIMIT #{pageSize} OFFSET #{offset}
+		LIMIT #{pageable.pageSize} OFFSET #{pageable.offset}
 	</select>
 	
 	<select id="getTotalElementCount" resultType="int">
-		SELECT COUNT(id) FROM board
+		SELECT COUNT(id) 
+		FROM board
+		<if test="keyword != null and !keyword.equals('')">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
 	</select>
 	
 	<!-- 게시글 단건 조회 -->

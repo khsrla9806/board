@@ -5,13 +5,13 @@
 <div class="container">
 	<!-- board -->
 	<div class="content">
-		<!-- board seach area -->
+		<!-- board search area -->
 		<div id="board-search">
 			<div class="search-window">
 				<form action="">
 					<div class="search-wrap">
-						<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-						<button type="submit" class="btn">검색</button>
+						<input id="search" name="search" type="search" placeholder="제목으로 검색하세요." value="">
+						<button class="btn">검색</button>
 					</div>
 				</form>
 			</div>

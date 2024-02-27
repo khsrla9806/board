@@ -13,6 +13,7 @@ import com.board.boardproject.entity.Board;
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.BoardRepository;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
+import com.board.boardproject.web.dto.BoardGetRequestDto;
 import com.board.boardproject.web.dto.BoardResponseDto;
 import com.board.boardproject.web.dto.BoardUpdateRequestDto;
 import com.board.boardproject.web.dto.BoardCreateRequestDto;
@@ -53,14 +54,14 @@ public class BoardService {
 	/**
 	 * 게시글 페이징 조회
 	 */
-	public Pagination<BoardResponseDto> getBoards(Pageable pageable) {
-		List<BoardResponseDto> boards = boardRepository.findAll(pageable).stream()
+	public Pagination<BoardResponseDto> getBoards(BoardGetRequestDto dto) {
+		List<BoardResponseDto> boards = boardRepository.findAll(dto).stream()
 				.map(BoardResponseDto::fromEntity)
 				.collect(Collectors.toList());
 		
-		int elementCount = boardRepository.getTotalElementCount();
+		int elementCount = boardRepository.getTotalElementCount(dto.getKeyword());
 		
-		return Pagination.of(boards, pageable, elementCount);
+		return Pagination.of(boards, dto.getPageable(), elementCount);
 	}
 	
 	

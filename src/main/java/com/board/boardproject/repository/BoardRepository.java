@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.data.domain.Pageable;
 
 import com.board.boardproject.entity.Board;
+import com.board.boardproject.web.dto.BoardGetRequestDto;
 
 @Mapper
 public interface BoardRepository {
@@ -14,12 +15,12 @@ public interface BoardRepository {
 	/**
 	 * 게시글 페이징 조회
 	 */
-	List<Board> findAll(Pageable pageable);
+	List<Board> findAll(BoardGetRequestDto dto);
 	
 	/**
 	 * 페이징 총 카운트
 	 */
-	int getTotalElementCount();
+	int getTotalElementCount(String keyword);
 	
 	/**
 	 * 게시글 단건 조회

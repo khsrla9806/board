@@ -1,6 +1,6 @@
 
 function getBoardsPage(page) {
-	
+		
 	// 첫 번째 페이지인 경우 예외처리
 	if (page < 0) {
 		alert("첫 번째 페이지입니다.");
@@ -12,22 +12,30 @@ function getBoardsPage(page) {
 		page = 0;
 	}
 	
+	let requestURL = `/api/v1/boards?page=${page}`;
+	
+	// 여기서 keyword의 Null 처리르 해줘야 한다. (Server까지 가면 그냥 'null'이라는 문자열로 처리된다.)
+	const keyword = params.get('search');
+	if (keyword) {
+		requestURL += `&keyword=${keyword}`;
+	}
+	
 	$.ajax({
 		type: 'get',
-		url: `/api/v1/boards?page=${page}`
+		url: requestURL
 	}).done(response => {
-		
-		// 마지막 페이지인 경우 예외처리
-		if (page >= response.totalPages) {
-			alert("마지막 페이지입니다.");
-			return;
-		}
-		
 		$('#board-list').empty();
-		response.data.forEach((board) => {
-			let boardItem = getBoardItem(board, page);
-			$('#board-list').append(boardItem);
-		});
+		
+		if (response.data.length != 0) {
+			response.data.forEach((board) => {
+				let boardItem = getBoardItem(board, page);
+				$('#board-list').append(boardItem);
+			});	
+		} else {
+			$('#board-list').append(`
+				<h2>검색하신 '${keyword}'에 대한 결과가 없습니다.</h2>
+			`)
+		}
 		
 		setPagination(page, response);
 		
@@ -83,7 +91,6 @@ function getBoardItem(board, page) {
  * 페이지네이션 버튼 구성해주는 함수
  */
 function setPagination(page, response) {
-	
 	// pagination UI 구성을 위해 필요한 정보들
 	const maxSize = 5;
 	const startPage = Math.floor(page / maxSize) * maxSize + 1;
@@ -145,7 +152,7 @@ function setPaginationArrowVisible(currentPage, startPage, lastPage, totalPages)
 	}
 	
 	// 다음 페이지가 존재하지 않는 경우 : > 버튼을 숨기기
-	if (currentPage == totalPages) {
+	if (currentPage == totalPages || totalPages == 0) {
 		switchHidden("next");
 	} else {
 		switchVisible("next");
