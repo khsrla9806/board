@@ -10,16 +10,11 @@ import com.board.boardproject.entity.Board;
 
 @Mapper
 public interface BoardRepository {
-	/**
-	 * 게시글 목록 조회
-	 * TODO: 페이징으로 변환
-	 */
-	List<Board> findAll();
 	
 	/**
 	 * 게시글 페이징 조회
 	 */
-	List<Board> findAllPage(Pageable pageable);
+	List<Board> findAll(Pageable pageable);
 	
 	/**
 	 * 페이징 총 카운트

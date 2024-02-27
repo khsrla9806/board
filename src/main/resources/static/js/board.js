@@ -1,21 +1,4 @@
 
-function getBoards() {
-	$.ajax({
-		type: 'get',
-		url: '/api/v1/boards/page'
-	}).done(response => {
-		response.data.forEach((board) => {
-			let boardItem = getBoardItem(board);
-			$('#board-list').append(boardItem);
-		});
-		
-		setPagination(response);
-		
-	}).fail(error => {
-		console.log(error);
-	});
-}
-
 function getBoardsPage(page) {
 	
 	// 첫 번째 페이지인 경우 예외처리
@@ -31,7 +14,7 @@ function getBoardsPage(page) {
 	
 	$.ajax({
 		type: 'get',
-		url: `/api/v1/boards/page?page=${page}`
+		url: `/api/v1/boards?page=${page}`
 	}).done(response => {
 		
 		// 마지막 페이지인 경우 예외처리

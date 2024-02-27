@@ -32,20 +32,10 @@ public class BoardService {
 	}
 	
 	/**
-	 * 게시글 목록 조회
-	 */
-	public List<BoardResponseDto> getBoards() {
-		List<Board> boards = boardRepository.findAll();
-		
-		return boards.stream().map(BoardResponseDto::fromEntity)
-				.collect(Collectors.toList());
-	}
-	
-	/**
 	 * 게시글 페이징 조회
 	 */
-	public Pagination<BoardResponseDto> getBoardsPage(Pageable pageable) {
-		List<BoardResponseDto> boards = boardRepository.findAllPage(pageable).stream()
+	public Pagination<BoardResponseDto> getBoards(Pageable pageable) {
+		List<BoardResponseDto> boards = boardRepository.findAll(pageable).stream()
 				.map(BoardResponseDto::fromEntity)
 				.collect(Collectors.toList());
 		
