@@ -25,7 +25,7 @@ function getBoardsPage(page) {
 		
 		$('#board-list').empty();
 		response.data.forEach((board) => {
-			let boardItem = getBoardItem(board);
+			let boardItem = getBoardItem(board, page);
 			$('#board-list').append(boardItem);
 		});
 		
@@ -39,12 +39,15 @@ function getBoardsPage(page) {
 	});
 }
 
-getBoardsPage();
+let params = new URLSearchParams(location.search);
+let page = params.has('page') ? parseInt(params.get('page')) : 0;
+
+getBoardsPage(page);
 
 /**
  * board 데이터 응답 형태를 받아서 HTML에 넣어줄 요소를 반환하는 함수
  */
-function getBoardItem(board) {
+function getBoardItem(board, page) {
 	let item = `
 			<div class="content-element">
 				<div class="board-title" id="board-title-value">
@@ -63,7 +66,7 @@ function getBoardItem(board) {
 					<div class="board-writer-nickname">
 						작성자: <span id="board-writer-nickanme-value">${board.writerNickname}</span>
 					</div>
-					<button type="button" onClick="location.href='/board/${board.id}'" class="classic-btn">
+					<button type="button" onClick="location.href='/board/${board.id}?page=${page}'" class="classic-btn">
 						게시글 상세보기
 					</button>
 				</div>

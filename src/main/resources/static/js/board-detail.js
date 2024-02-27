@@ -20,3 +20,13 @@ function deleteBoard(boardId) {
 	
 	return;
 }
+
+let params = new URLSearchParams(location.search);
+let page = params.has('page') ? parseInt(params.get('page')) : 0;
+
+/**
+ * 뒤로 가기 눌렀을 때, 이전 페이지를 유지 하기 위한 메서드
+ */
+function moveBack() {
+	location.href = `/home?page=${page}`;
+}
