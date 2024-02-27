@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.service.BoardService;
@@ -57,11 +58,8 @@ public class BoardController {
 	 * 게시글 수정
 	 */
 	@PostMapping("/update-board")
-	public String updateBoard(BoardUpdateRequestDto dto) {
-		
+	public void updateBoard(BoardUpdateRequestDto dto) {
 		boardService.updateBoard(dto);
-		
-		return "redirect:/board/" + dto.getBoardId();
 	}
 	
 	

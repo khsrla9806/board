@@ -5,11 +5,13 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.board.boardproject.common.domain.Pagination;
 import com.board.boardproject.service.BoardService;
 import com.board.boardproject.web.dto.BoardResponseDto;
+import com.board.boardproject.web.dto.BoardUpdateRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,5 +34,13 @@ public class BoardApiController {
 	@DeleteMapping("/api/v1/boards/{boardId}")
 	public void deleteBoard(@PathVariable Long boardId) {
 		boardService.deleteBoard(boardId);
+	}
+	
+	/**
+	 * 게시글 수정
+	 */
+	@PutMapping("/api/v1/boards/{boardId}")
+	public void updateBoard(@PathVariable Long boardId, BoardUpdateRequestDto dto) {
+		boardService.updateBoard(dto);
 	}
 }

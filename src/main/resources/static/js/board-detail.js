@@ -10,10 +10,11 @@ function deleteBoard(boardId) {
 		})
 		.done(response => {
 			// home 화면으로 Redirect
-			location.href = '/home';
+			location.replace("/home");
 		})
 		.fail(error => {
-			// 삭제 실패
+			// 삭제 실패 : 홈 화면으로 이동
+			location.replace("/home");
 		});	
 	}
 	

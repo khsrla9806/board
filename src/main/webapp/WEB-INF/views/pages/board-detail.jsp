@@ -37,7 +37,7 @@
 		
 		<div class="board-detail-bottom-area">
 			<div class="move-btn-area">
-				<button class="classic-btn" type="button" onClick="#">뒤로 가기</button>
+				<button class="classic-btn" type="button" onClick="history.back()">뒤로 가기</button>
 			</div>
 			
 			<div class="modify-btn-area">

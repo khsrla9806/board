@@ -4,7 +4,7 @@
 
 <div class="container">
 
-	<form class="board-create-form" name="board-create-form" method="post" action="/update-board">
+	<form id="boardUpdate" class="board-create-form" name="board-create-form" onSubmit="updateBoard(event)">
 		<h1>게시글 수정</h1>
 		
 		<input id="boardId" name="boardId" type="hidden" value="${board.id}" />
@@ -21,5 +21,7 @@
 	</form> 
 	
 </div>
+
+<script src="/js/board-update.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
