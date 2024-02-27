@@ -22,7 +22,7 @@ function deleteBoard(boardId) {
 }
 
 let page = getCookie("beforeHomePage") ? parseInt(getCookie("beforeHomePage")) : 0;
-console.log(page);
+let keyword = getCookie("beforeHomeKeyword");
 
 //쿠키 값 가져오는 함수
 function getCookie(name) {
@@ -34,5 +34,11 @@ function getCookie(name) {
  * 뒤로 가기 눌렀을 때, 이전 페이지를 유지 하기 위한 메서드
  */
 function moveBack() {
-	location.href = `/home?page=${page}`;
+	let requestURI = `/home?page=${page}`;
+	
+	if (keyword) {
+		requestURI += `&search=${keyword}`;
+	}
+	
+	location.href = requestURI;
 }

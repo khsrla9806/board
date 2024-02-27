@@ -16,7 +16,7 @@ function getBoardsPage(page) {
 	
 	// 여기서 keyword의 Null 처리르 해줘야 한다. (Server까지 가면 그냥 'null'이라는 문자열로 처리된다.)
 	const keyword = params.get('search');
-	if (keyword) {
+	if (keyword) { // 여기서 null, undefined, 비어있는 문자 확인
 		requestURL += `&keyword=${keyword}`;
 	}
 	
@@ -39,8 +39,11 @@ function getBoardsPage(page) {
 		
 		setPagination(page, response);
 		
-		// 현재 페이지 정보를 쿠키에 저장
+		// 현재 페이지 정보를 쿠키에 저장 (페이지 정보, 키워드 정보)
 		document.cookie = `beforeHomePage=${page}`;
+		if (keyword != null && !(typeof keyword == "undefined")) {
+			document.cookie = `beforeHomeKeyword=${keyword}`;
+		}
 		
 		// 게시글 리스트 상단으로 스크롤 이동
 		window.scrollTo({top: 0, behavior: 'smooth'});
