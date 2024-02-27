@@ -13,7 +13,6 @@ function updateBoard(event) {
 	$.ajax({
 		type: 'put',
 		url: `/api/v1/boards/${boardId}`,
-		dataType: 'text', // Server에서 Client로 리턴하는 데이터 타입
 		contentType: "application/x-www-form-urlencoded; charset=utf-8",
 		data: {
 			boardId,

@@ -1,6 +1,7 @@
 package com.board.boardproject.web.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.board.boardproject.entity.Board;
 
@@ -19,7 +20,7 @@ public class BoardResponseDto {
 	private Long id;
 	private String title;
 	private String content;
-	private LocalDateTime createdDate;
+	private String createdDate;
 	private String writerNickname;
 	
 	public static BoardResponseDto fromEntity(Board board) {
@@ -27,8 +28,12 @@ public class BoardResponseDto {
 				.id(board.getId())
 				.title(board.getTitle())
 				.content(board.getContent())
-				.createdDate(board.getCreatedDate())
+				.createdDate(getFormattedCreatedDate(board.getCreatedDate()))
 				.writerNickname(board.getMember().getNickname())
 				.build();
+	}
+	
+	public static String getFormattedCreatedDate(LocalDateTime date) {
+		return date.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분"));
 	}
 }

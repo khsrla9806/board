@@ -20,12 +20,12 @@
 		
 		<p>작성일시</p>
 		<div class="board-created-date row-item">
-			${boardDetail.createdDate}
+			${boardDetail.getFormattedCreatedDate()}
 		</div>
 		
 		<p>수정일시</p>
 		<div class="board-modified-date row-item">
-			${boardDetail.modifiedDate}
+			${boardDetail.getFormattedModifiedDate()}
 		</div>
 		
 		<p>작성자</p>

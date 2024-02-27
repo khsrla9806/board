@@ -1,6 +1,7 @@
 package com.board.boardproject.web.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.board.boardproject.entity.Board;
 
@@ -34,5 +35,13 @@ public class BoardDetailResponseDto {
 				.createdDate(board.getCreatedDate())
 				.modifiedDate(board.getModifiedDate())
 				.build();
+	}
+	
+	public String getFormattedCreatedDate() {
+		return createdDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분"));
+	}
+	
+	public String getFormattedModifiedDate() {
+		return modifiedDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분"));
 	}
 }
