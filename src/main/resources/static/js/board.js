@@ -31,6 +31,9 @@ function getBoardsPage(page) {
 		
 		setPagination(page, response);
 		
+		// 현재 페이지 정보를 쿠키에 저장
+		document.cookie = `beforeHomePage=${page}`;
+		
 		// 게시글 리스트 상단으로 스크롤 이동
 		window.scrollTo({top: 0, behavior: 'smooth'});
 		

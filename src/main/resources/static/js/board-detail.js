@@ -21,8 +21,14 @@ function deleteBoard(boardId) {
 	return;
 }
 
-let params = new URLSearchParams(location.search);
-let page = params.has('page') ? parseInt(params.get('page')) : 0;
+let page = getCookie("beforeHomePage") ? parseInt(getCookie("beforeHomePage")) : 0;
+console.log(page);
+
+//쿠키 값 가져오는 함수
+function getCookie(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value ? value[2] : null;
+}
 
 /**
  * 뒤로 가기 눌렀을 때, 이전 페이지를 유지 하기 위한 메서드
