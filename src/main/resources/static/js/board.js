@@ -177,5 +177,19 @@ const switchVisible = (elementId) => {
 }
 
 
+/**
+ * 로그아웃
+ */
+function logout() {
+	$.ajax({
+		type: "post",
+		url: "/auth/logout"
+	}).done(response => {
+		alert("로그아웃 성공");
+		location.href = "/home";
+	}).fail(error => {
+		console.log("error 발생 : " + error);
+	});
+}
 
 

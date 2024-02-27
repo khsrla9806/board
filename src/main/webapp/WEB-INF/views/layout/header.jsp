@@ -20,6 +20,7 @@
 <body>
 
 	<div class="header">
-		<h1>게시판</h1>
+		<div><img class="logo" src="/img/apple-logo.png" alt=""></div>
+		<div class="logo-title">나는 <span style="color: #F781D8;">애플</span>이 좋아 게시판</div>
 	</div>
 	

@@ -2,7 +2,7 @@
 
 <footer>
 	<div class="footer">
-		<h1>FOOTER</h1>
+		<p>@Copyright hoonsb</p>
 	</div>
 </footer>
 

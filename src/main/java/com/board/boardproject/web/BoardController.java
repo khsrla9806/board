@@ -26,7 +26,7 @@ public class BoardController {
 	 */
 	@GetMapping("/board/create-form")
 	public String getCreateForm() {
-		return "pages/board-create";
+		return "pages/board/board-create";
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class BoardController {
 		
 		model.addAttribute("board", boardService.getBoard(boardId));
 		
-		return "pages/board-update";
+		return "pages/board/board-update";
 	}
 	
 	/**
@@ -72,6 +72,6 @@ public class BoardController {
 		
 		model.addAttribute("boardDetail", boardDetailDto);
 		
-		return "pages/board-detail";
+		return "pages/board/board-detail";
 	}
 }

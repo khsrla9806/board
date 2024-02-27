@@ -2,7 +2,6 @@ package com.board.boardproject.web.api;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,9 +47,7 @@ public class BoardApiController {
 	 * 게시글 수정
 	 */
 	@PutMapping("/api/v1/boards/{boardId}")
-	public ResponseEntity<String> updateBoard(@PathVariable Long boardId, BoardUpdateRequestDto dto) {
+	public void updateBoard(@PathVariable Long boardId, BoardUpdateRequestDto dto) {
 		boardService.updateBoard(dto);
-		
-		return ResponseEntity.ok("성공했슈");
 	}
 }

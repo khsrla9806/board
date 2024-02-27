@@ -6,4 +6,13 @@
     <select id="findById" resultType="com.board.boardproject.entity.Member">
         SELECT * FROM member WHERE id = #{id}
     </select>
+    
+    <select id="findByNickname" resultType="com.board.boardproject.entity.Member">
+        SELECT * FROM member WHERE nickname = #{nickname}
+    </select>
+    
+    <insert id="save">
+    	INSERT INTO member(nickname, password, created_date, modified_date) 
+    	VALUES(#{nickname}, #{password}, #{createdDate}, #{modifiedDate})
+    </insert>
 </mapper>

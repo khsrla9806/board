@@ -16,4 +16,8 @@ public class Member {
     private String password;
     private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
+	
+	public boolean isMatchPassword(String rawPassword) {
+		return this.password.equals(rawPassword);
+	}
 }

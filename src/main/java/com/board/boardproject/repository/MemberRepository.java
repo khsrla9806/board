@@ -12,4 +12,14 @@ public interface MemberRepository {
 	 * 사용자 단건 조회
 	 */
     Optional<Member> findById(Long id);
+    
+    /**
+     * 사용자 닉네임으로 조회
+     */
+    Optional<Member> findByNickname(String nickname);
+    
+    /**
+     * 사용자 생성
+     */
+    void save(Member member);
 }
