@@ -90,6 +90,9 @@ const getMyCurrentBoardItem = (board) => {
 	return item;
 }
 
+// 홈으로 재로딩하게 되면 검색 키워드 쿠키 내용은 초기화
+deleteCookie("beforeHomeKeyword");
+
 let params = new URLSearchParams(location.search);
 let page = params.has('page') ? parseInt(params.get('page')) : 0;
 
@@ -235,4 +238,39 @@ function logout() {
 	});
 }
 
+/**
+ * 쿠키를 등록하는 메서드
+ */
+function setCookie(name, value, options = {}) {
 
+  options = {
+    path: '/',
+    // 필요한 경우, 옵션 기본값을 설정할 수도 있습니다.
+    ...options
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+/**
+ * 쿠키 삭제 메서드
+ */
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1 // 만료 기간을 음수로 하면 쿠키는 삭제된다.
+  })
+}
