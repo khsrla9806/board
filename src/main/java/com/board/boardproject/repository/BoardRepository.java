@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
 import com.board.boardproject.entity.Board;
@@ -16,6 +17,11 @@ public interface BoardRepository {
 	 * 게시글 페이징 조회
 	 */
 	List<Board> findAll(BoardGetRequestDto dto);
+	
+	/**
+	 * 내가 작성한 최근 게시글 조회
+	 */
+	List<Board> findByMemberIdWithSize(@Param("memberId") Long memberId, @Param("size") Integer size);
 	
 	/**
 	 * 페이징 총 카운트

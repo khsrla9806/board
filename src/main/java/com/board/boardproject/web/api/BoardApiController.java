@@ -1,5 +1,7 @@
 package com.board.boardproject.web.api;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +36,18 @@ public class BoardApiController {
 		BoardGetRequestDto dto = new BoardGetRequestDto(keyword, pageable);
 		
 		return boardService.getBoards(dto);
+	}
+	
+	/**
+	 * 내가 작성한 최근 게시글 조회
+	 */
+	@GetMapping("/api/v1/boards/my")
+	public List<BoardResponseDto> getCurrentMyBoards(
+			@RequestParam(defaultValue = "5") Integer size,
+			LoginMember loginMember
+	) {
+		System.out.println("나 호출됨?");
+		return boardService.getMyCurrentBoards(size, loginMember);
 	}
 	
 	/**

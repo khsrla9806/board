@@ -30,6 +30,21 @@
 		</if>
 	</select>
 	
+	<!-- 내가 작성한 최근 게시글 조회 -->
+	<select id="findByMemberIdWithSize" resultMap="Board">
+		SELECT
+			b.id, b.title, b.content, b.created_date, b.modified_date,
+        	m.id 'm_id',
+        	m.nickname 'm_nickname',
+        	m.password 'm_password',
+        	m.created_date 'm_created_date',
+        	m.modified_date 'm_modified_date'
+		FROM board b
+		INNER JOIN member m ON m.id = b.member_id AND m.id = #{memberId}
+		ORDER BY b.id DESC
+		LIMIT #{size}
+	</select>
+	
 	<!-- 게시글 단건 조회 -->
     <select id="findById" resultMap="Board">
         SELECT 

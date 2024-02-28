@@ -3,6 +3,8 @@
 
 <%@ include file="../layout/header.jsp"%>
 
+<input type="hidden" id="loginMember" name="loginMember" value="${loginMember}" />
+
 <div class="container">
 	<!-- board -->
 	<div class="content">
@@ -54,7 +56,19 @@
 				<button class="classic-btn" type="button" onClick="logout()">로그아웃</button>
 			</c:if>
 		</div>
-		<div class="side-box">SIDE AREA</div>
+		<div class="side-box">
+			<c:if test="${not empty loginMember}">
+				<div class="side-box-title">내가 최근에 작성한 게시글</div>
+				<div id="my-current-board-list">
+					<!-- 최근 게시글 영역 -->
+				</div>
+			</c:if>
+			<c:if test="${empty loginMember}">
+				<div class="side-box-title">
+					로그인 후 사용해주세요.
+				</div>
+			</c:if>
+		</div>
 	</div>
 </div>
 

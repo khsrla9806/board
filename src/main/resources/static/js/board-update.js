@@ -24,6 +24,7 @@ function updateBoard(event) {
 		location.replace(`/board/${boardId}`);
 	})
 	.fail(error => {
+		alert("수정할 수 없습니다.");
 		location.replace('/home');
 	});
 }

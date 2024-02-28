@@ -13,7 +13,7 @@ function deleteBoard(boardId) {
 			location.replace("/home");
 		})
 		.fail(error => {
-			// 삭제 실패 : 홈 화면으로 이동
+			alert("삭제할 수 없습니다.");
 			location.replace("/home");
 		});	
 	}

@@ -31,9 +31,13 @@ function getBoardsPage(page) {
 				let boardItem = getBoardItem(board, page);
 				$('#board-list').append(boardItem);
 			});	
-		} else {
+		} else if (keyword != null) {
 			$('#board-list').append(`
 				<h2>검색하신 '${keyword}'에 대한 결과가 없습니다.</h2>
+			`)
+		} else {
+			$('#board-list').append(`
+				<h2>게시글이 존재하지 않습니다.</h2>
 			`)
 		}
 		
@@ -53,9 +57,48 @@ function getBoardsPage(page) {
 	});
 }
 
+/**
+ * 최근 내가 작성한 게시글
+ */
+function getMyCurrentBoards() {
+	const size = 5;
+	
+	$.ajax({
+		type: 'get',
+		url: `/api/v1/boards/my?size=${size}`
+	}).done(response => {
+		$('#my-current-board-list').empty();
+		
+		response.forEach((board) => {
+			let currentBoardItem = getMyCurrentBoardItem(board);
+			$('#my-current-board-list').append(currentBoardItem);
+		});
+		
+	}).fail(error => {
+		console.log(error);
+	});
+}
+
+const getMyCurrentBoardItem = (board) => {
+	let item = `
+		<div class="my-current-board-item" onClick="location.href='/board/${board.id}'">
+			<div class="my-current-board-title">${board.title}</div>
+			<div class="my-current-board-content">${board.content}</div>
+		</div>
+	`;
+	
+	return item;
+}
+
 let params = new URLSearchParams(location.search);
 let page = params.has('page') ? parseInt(params.get('page')) : 0;
 
+// 로그인되어있는 상태인지 확인
+const loginMember = document.getElementById("loginMember").value;
+
+if (loginMember) {
+	getMyCurrentBoards(); // 로그인된 사용자가 있을 때만 실행되는 영역
+}
 getBoardsPage(page);
 
 /**

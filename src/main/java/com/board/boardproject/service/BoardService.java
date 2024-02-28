@@ -78,6 +78,18 @@ public class BoardService {
 		return Pagination.of(boards, dto.getPageable(), elementCount);
 	}
 	
+	/**
+	 * 최근 게시글 조회
+	 */
+	public List<BoardResponseDto> getMyCurrentBoards(Integer size, LoginMember loginMember) {
+		List<Board> boards = boardRepository.findByMemberIdWithSize(loginMember.getId(), size);
+		
+		System.out.println("board size = " + boards.size());
+		
+		return boards.stream()
+				.map(BoardResponseDto::fromEntity).collect(Collectors.toList());
+	}
+	
 	
 	/**
 	 * 게시글 상세 조회
