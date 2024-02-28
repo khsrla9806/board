@@ -9,27 +9,27 @@
 
 <div class="container">
 	<div class="board-detail">
-		<p>게시글 제목</p>
+		<p class="small-title">게시글 제목</p>
 		<div class="board-title">
 			${boardDetail.title}
 		</div>
 		
-		<p>게시글 내용</p>
+		<p class="small-title">게시글 내용</p>
 		<div class="board-content">
 			${fn:replace(boardDetail.content, replaceChar, "<br>")} <!-- JSP에서는 개행문자가 먹지 않는다. <br>로 변환 -->
 		</div>
 		
-		<p>작성일시</p>
+		<p class="small-title">작성일시</p>
 		<div class="board-created-date row-item">
 			${boardDetail.getFormattedCreatedDate()}
 		</div>
 		
-		<p>수정일시</p>
+		<p class="small-title">수정일시</p>
 		<div class="board-modified-date row-item">
 			${boardDetail.getFormattedModifiedDate()}
 		</div>
 		
-		<p>작성자</p>
+		<p class="small-title">작성자</p>
 		<div class="board-writer-nickname row-item">
 			${boardDetail.memberNickname}
 		</div>

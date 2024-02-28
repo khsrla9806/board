@@ -80,10 +80,14 @@ function getMyCurrentBoards() {
 }
 
 const getMyCurrentBoardItem = (board) => {
+	
+	// 목록 보기에서는 태그 모두 지움
+	let content = board.content.replace(/(<([^>]+)>)/gi, "");
+	
 	let item = `
 		<div class="my-current-board-item" onClick="location.href='/board/${board.id}'">
 			<div class="my-current-board-title">${board.title}</div>
-			<div class="my-current-board-content">${board.content}</div>
+			<div class="my-current-board-content">${content}</div>
 		</div>
 	`;
 	
@@ -108,14 +112,18 @@ getBoardsPage(page);
  * board 데이터 응답 형태를 받아서 HTML에 넣어줄 요소를 반환하는 함수
  */
 function getBoardItem(board, page) {
+	
+	// 목록 보기에서는 태그 모두 지움
+	let content = board.content.replace(/(<([^>]+)>)/gi, "");
+	
 	let item = `
-			<div class="content-element">
+			<div class="content-element" onClick="location.href='/board/${board.id}?page=${page}'">
 				<div class="board-title" id="board-title-value">
 					${board.title}
 				</div>
 				
 				<div class="board-content" id="board-content-value">
-					${board.content}
+					${content}
 				</div>
 				
 				<div class="board-created-date">
@@ -126,9 +134,6 @@ function getBoardItem(board, page) {
 					<div class="board-writer-nickname">
 						작성자: <span id="board-writer-nickanme-value">${board.writerNickname}</span>
 					</div>
-					<button type="button" onClick="location.href='/board/${board.id}?page=${page}'" class="classic-btn">
-						게시글 상세보기
-					</button>
 				</div>
 			</div>
 	`;

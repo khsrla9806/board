@@ -111,6 +111,7 @@ footer {
 }
 
 .content-element {
+	cursor: pointer;
     width: 100%;
     height: 200px;
     margin-bottom: 30px;
@@ -284,13 +285,9 @@ footer {
 	margin: 100px auto 0px;
 }
 
-.board-create-form p {
-	color: #6E6E6E;
-	font-size: 10px;
-}
 
 #title, #nickname, #password, #password-first, #password-second, #email {
-	width: 490px;
+	width: 830px;
 	height: 25px;
 	margin-bottom: 20px;
 	margin-top: 10px;
@@ -318,17 +315,8 @@ footer {
 	border: 1px #BDBDBD solid;
 }
 
-#content {
-	width: 490px;
-	height: 300px;
-	margin-bottom: 10px;
-	padding: 5px;
-	border-radius: 5px;
-	border: 1px #BDBDBD solid;
-}
-
 #btn {
-	width: 500px;
+	width: 841.6px;
 	height: 25px;
 	border-radius: 5px;
 	border: 1px #BDBDBD solid;
@@ -342,7 +330,7 @@ footer {
 }
 
 
-.board-detail p {
+.board-detail .small-title {
 	color: #6E6E6E;
 	font-size: 10px;
 	margin-bottom: 3px;
