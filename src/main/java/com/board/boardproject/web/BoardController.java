@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.board.boardproject.common.domain.LoginMember;
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.service.BoardService;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
@@ -33,10 +34,9 @@ public class BoardController {
 	 * 게시글 업로드
 	 */
 	@PostMapping("/create-board")
-	public String createBoard(BoardCreateRequestDto dto) {
+	public String createBoard(BoardCreateRequestDto dto, LoginMember loginMember) {
 		
-		// TODO: 임시 사용자 객체
-		Member member = Member.builder().id(1L).build();
+		Member member = Member.builder().id(loginMember.getId()).build();
 		
 		boardService.createBoard(dto, member);
 		
@@ -58,8 +58,8 @@ public class BoardController {
 	 * 게시글 수정
 	 */
 	@PostMapping("/update-board")
-	public void updateBoard(BoardUpdateRequestDto dto) {
-		boardService.updateBoard(dto);
+	public void updateBoard(BoardUpdateRequestDto dto, LoginMember loginMember) {
+		boardService.updateBoard(dto, loginMember);
 	}
 	
 	

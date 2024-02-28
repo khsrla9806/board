@@ -42,6 +42,9 @@ public class AuthController {
 		return "redirect:/auth/sign-in-form";
 	}
 	
+	/**
+	 * 로그인 : 세션을 만들어서 등록
+	 */
 	@PostMapping("/auth/sign-in")
 	public String signIn(HttpServletRequest request, SignInRequestDto dto) {
 		
@@ -59,6 +62,9 @@ public class AuthController {
 		return "redirect:/home";
 	}
 	
+	/**
+	 * 로그아웃 : 세션을 만료시킴
+	 */
 	@PostMapping("/auth/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();

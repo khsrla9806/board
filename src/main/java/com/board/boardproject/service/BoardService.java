@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.board.boardproject.common.domain.LoginMember;
 import com.board.boardproject.common.domain.Pagination;
+import com.board.boardproject.common.exception.BadRequestException;
 import com.board.boardproject.common.exception.ErrorMessage;
 import com.board.boardproject.common.exception.NotFoundException;
 import com.board.boardproject.entity.Board;
@@ -36,9 +38,13 @@ public class BoardService {
 	/**
 	 * 게시글 수정
 	 */
-	public void updateBoard(BoardUpdateRequestDto dto) {
+	public void updateBoard(BoardUpdateRequestDto dto, LoginMember loginMember) {
 		Board board = boardRepository.findById(dto.getBoardId())
 				.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
+		
+		if (!board.isOwner(loginMember.getId())) {
+			throw new BadRequestException("수정 권한이 없습니다.");
+		}
 		
 		board.update(dto.getTitle(), dto.getContent());
 		boardRepository.update(board);
@@ -47,7 +53,15 @@ public class BoardService {
 	/**
 	 * 게시글 삭제
 	 */
-	public void deleteBoard(Long boardId) {
+	public void deleteBoard(Long boardId, LoginMember loginMember) {
+		
+		Board board = boardRepository.findById(boardId)
+				.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
+		
+		if (!board.isOwner(loginMember.getId())) {
+			throw new BadRequestException("삭제 권한이 없습니다.");
+		}
+		
 		boardRepository.deleteById(boardId);
 	}
 	

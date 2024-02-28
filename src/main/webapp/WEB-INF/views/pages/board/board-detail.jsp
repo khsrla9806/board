@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="../../layout/header.jsp"%>
 
@@ -40,10 +41,12 @@
 				<button class="classic-btn" type="button" onClick="moveBack()">뒤로 가기</button>
 			</div>
 			
-			<div class="modify-btn-area">
-				<button class="classic-btn" type="button" onClick="javascript:location.href='/board/update-form/${boardDetail.id}'">게시글 수정</button>
-				<button class="classic-btn" type="button" onClick="deleteBoard(${boardDetail.id})">게시글 삭제</button>
-			</div>
+			<c:if test="${not empty loginMember and loginMember.id eq boardDetail.memberId}">
+				<div class="modify-btn-area">
+					<button class="classic-btn" type="button" onClick="javascript:location.href='/board/update-form/${boardDetail.id}'">게시글 수정</button>
+					<button class="classic-btn" type="button" onClick="deleteBoard(${boardDetail.id})">게시글 삭제</button>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </div>

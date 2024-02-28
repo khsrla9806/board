@@ -9,7 +9,8 @@ public enum ErrorMessage {
 	NOT_FOUND("요청하신 리소스를 찾을 수 없습니다."), 
 	DUPLICATED_MEMBER_NICKNAME("이미 존재하는 닉네임입니다."),
 	FAIL_PASSWORD_RECHECK("입력한 비밀번호 2개가 다릅니다."),
-	MISMATCH_PASSWORD("비밀번호가 일치하지 않습니다.")
+	MISMATCH_PASSWORD("비밀번호가 일치하지 않습니다."),
+	IS_NOT_LOGIN_MEMBER("로그인 되어 있지 않은 사용자입니다.")
 	;
 	
 	private final String message;

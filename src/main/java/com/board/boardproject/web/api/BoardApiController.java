@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.board.boardproject.common.domain.LoginMember;
 import com.board.boardproject.common.domain.Pagination;
 import com.board.boardproject.service.BoardService;
 import com.board.boardproject.web.dto.BoardGetRequestDto;
@@ -39,15 +40,15 @@ public class BoardApiController {
 	 * 게시글 삭제
 	 */
 	@DeleteMapping("/api/v1/boards/{boardId}")
-	public void deleteBoard(@PathVariable Long boardId) {
-		boardService.deleteBoard(boardId);
+	public void deleteBoard(@PathVariable Long boardId, LoginMember loginMember) {
+		boardService.deleteBoard(boardId, loginMember);
 	}
 	
 	/**
 	 * 게시글 수정
 	 */
 	@PutMapping("/api/v1/boards/{boardId}")
-	public void updateBoard(@PathVariable Long boardId, BoardUpdateRequestDto dto) {
-		boardService.updateBoard(dto);
+	public void updateBoard(@PathVariable Long boardId, BoardUpdateRequestDto dto, LoginMember loginMember) {
+		boardService.updateBoard(dto, loginMember);
 	}
 }

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Builder
@@ -24,5 +23,9 @@ public class Board {
 		this.title = title;
 		this.content = content;
 		this.modifiedDate = LocalDateTime.now();
+	}
+	
+	public boolean isOwner(Long memberId) {
+		return member != null & member.getId().equals(memberId);
 	}
 }
