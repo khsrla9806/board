@@ -5,11 +5,11 @@
     font-style: normal;
 }
 
-html {
+html, body {
 	font-family: 'seolleimcool-SemiBold';
+	height: 100%;
 }
 
-/* home */
 a {
 	text-decoration-line: none;
 }
@@ -47,10 +47,16 @@ a {
     margin-bottom: 30px;
 }
 
-.footer {
+#wrapper {
+	height : auto;
+  	min-height: 100%;
+}
+
+footer {
     width: 100%;
-    height: 60px;
+    height: 100px;
     background-color: #F5EFFB;
+    position: relative;
 }
 
 .content {
@@ -222,7 +228,6 @@ a {
 	margin-left: 10px;
 }
 
-/* paging bar */
 .page_wrap {
 	text-align: center;
 	font-size: 0;
@@ -275,10 +280,8 @@ a {
 }
 
 
-/* board-create */
 .board-create-form {
-	margin: 0 auto;
-	height: 500px;
+	margin: 100px auto 0px;
 }
 
 .board-create-form p {
@@ -286,12 +289,31 @@ a {
 	font-size: 10px;
 }
 
-#title, #nickname, #password, #password-first, #password-second {
+#title, #nickname, #password, #password-first, #password-second, #email {
 	width: 490px;
 	height: 25px;
 	margin-bottom: 20px;
 	margin-top: 10px;
 	padding: 5px;
+	border-radius: 5px;
+	border: 1px #BDBDBD solid;
+}
+
+.address-box, .email-box {
+	margin: 10px 0 20px; /* 상 우 하 좌 */
+}
+
+#address {
+	width: 385px;
+	height: 25px;
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px #BDBDBD solid;
+}
+
+#address-search-btn {
+	width: 100px;
+	height: 36.6px;
 	border-radius: 5px;
 	border: 1px #BDBDBD solid;
 }
@@ -319,7 +341,6 @@ a {
 	margin-right: 10px;
 }
 
-/* board-detail */
 
 .board-detail p {
 	color: #6E6E6E;

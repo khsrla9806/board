@@ -16,3 +16,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        
+
+map-api:
+  conformKey: ${DEV_MAP_API_CONFORM_KEY}

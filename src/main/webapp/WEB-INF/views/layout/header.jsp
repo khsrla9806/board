@@ -24,3 +24,5 @@
 		<div class="logo-title"><a href="/home">나는 <span style="color: #F781D8;">애플</span>이 좋아 게시판</a></div>
 	</div>
 	
+	<div id="wrapper">
+	
