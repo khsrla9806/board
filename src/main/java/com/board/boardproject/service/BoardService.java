@@ -84,8 +84,6 @@ public class BoardService {
 	public List<BoardResponseDto> getMyCurrentBoards(Integer size, LoginMember loginMember) {
 		List<Board> boards = boardRepository.findByMemberIdWithSize(loginMember.getId(), size);
 		
-		System.out.println("board size = " + boards.size());
-		
 		return boards.stream()
 				.map(BoardResponseDto::fromEntity).collect(Collectors.toList());
 	}

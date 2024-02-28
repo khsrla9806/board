@@ -46,7 +46,6 @@ public class BoardApiController {
 			@RequestParam(defaultValue = "5") Integer size,
 			LoginMember loginMember
 	) {
-		System.out.println("나 호출됨?");
 		return boardService.getMyCurrentBoards(size, loginMember);
 	}
 	
