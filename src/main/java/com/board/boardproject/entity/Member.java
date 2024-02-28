@@ -14,6 +14,8 @@ public class Member {
     private Long id;
     private String nickname;
     private String password;
+    private String address;
+    private String email;
     private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
 	

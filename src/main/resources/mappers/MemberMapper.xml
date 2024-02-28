@@ -12,7 +12,7 @@
     </select>
     
     <insert id="save">
-    	INSERT INTO member(nickname, password, created_date, modified_date) 
-    	VALUES(#{nickname}, #{password}, #{createdDate}, #{modifiedDate})
+    	INSERT INTO member(nickname, password, address, email, created_date, modified_date) 
+    	VALUES(#{nickname}, #{password}, #{address}, #{email}, #{createdDate}, #{modifiedDate})
     </insert>
 </mapper>

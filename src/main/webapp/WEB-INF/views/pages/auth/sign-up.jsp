@@ -30,12 +30,12 @@
 		
 		<p>비밀번호</p>
 		<div>
-			<input id="password-first" name="firstPassword" placeholder="사용하실 비밀번호를 입력해주세요." />
+			<input id="password-first" type="password" name="firstPassword" placeholder="사용하실 비밀번호를 입력해주세요." />
 		</div>
 		
 		<p>비밀번호 확인</p>
 		<div>
-			<input id="password-second" name="secondPassword" placeholder="비밀번호를 확인합니다." />
+			<input id="password-second" type="password" name="secondPassword" placeholder="비밀번호를 확인합니다." />
 		</div>
 		
 		<p>이메일</p>

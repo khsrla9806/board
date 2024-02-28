@@ -15,7 +15,7 @@
 		
 		<p>비밀번호</p>
 		<div>
-			<input id="password" name="password" placeholder="비밀번호를 입력해주세요." />
+			<input id="password" type="password" name="password" placeholder="비밀번호를 입력해주세요." />
 		</div>
 		
 	  	<button id="btn">로그인</button>

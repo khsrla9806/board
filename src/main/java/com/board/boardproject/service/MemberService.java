@@ -47,6 +47,8 @@ public class MemberService {
     	Member member = Member.builder()
     			.nickname(dto.getNickname())
     			.password(dto.getFirstPassword())
+    			.address(dto.getAddress())
+    			.email(dto.getEmail())
     			.createdDate(LocalDateTime.now())
     			.modifiedDate(LocalDateTime.now())
     			.build();
