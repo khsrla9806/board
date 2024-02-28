@@ -1,6 +1,13 @@
+<%@page import="com.board.boardproject.web.dto.BoardDetailResponseDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="../../layout/header.jsp"%>
+
+<% 
+	BoardDetailResponseDto board = (BoardDetailResponseDto) request.getAttribute("board");
+	String content = board.getContent();
+	boolean isInvalidContent = content == null || content.isBlank();
+%>
 
 <div class="container">
 
@@ -14,7 +21,7 @@
 		</div>
 		
 		<div>
-			<textarea id="content" name="content" placeholder="내용을 입력해주세요.">${board.content}</textarea>
+			<textarea id="content" name="content" placeholder="내용을 입력해주세요."></textarea>
 		</div>
 		<br>
 	  	<button id="btn">게시글 수정</button>
@@ -23,6 +30,8 @@
 </div>
 
 <script type="text/javascript">
+
+
 
 /**
  * 썸머노트 적용
@@ -39,6 +48,11 @@ $(document).ready(function() {
           
 	});
 });
+
+// 썸머노트 내부에 기존 데이터를 넣는다.
+if (!<%=isInvalidContent%>) {
+	$('#content').summernote('code', '<%=content%>');
+}
 
 </script>
 
