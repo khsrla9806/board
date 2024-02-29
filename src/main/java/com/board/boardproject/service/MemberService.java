@@ -1,5 +1,10 @@
 package com.board.boardproject.service;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.board.boardproject.common.exception.BadRequestException;
 import com.board.boardproject.common.exception.ErrorMessage;
 import com.board.boardproject.common.exception.NotFoundException;
@@ -9,11 +14,6 @@ import com.board.boardproject.web.dto.SignInRequestDto;
 import com.board.boardproject.web.dto.SignUpRequestDto;
 
 import lombok.RequiredArgsConstructor;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -68,5 +68,25 @@ public class MemberService {
     	}
     	
     	return member;
+    }
+    
+    /**
+     * 닉네임으로 존재하는 사용자 확인하기
+     * @return 해당 닉네임의 사용자가 존재하면 true, 존재하지 않으면 false
+     */
+    public boolean checkExistMemberByNickname(String nickname) {
+    	Optional<Member> member = memberRepository.findByNickname(nickname);
+    	
+    	return member.isPresent() ? true : false;
+    }
+    
+    /**
+     * 이메일로 존재하는 사용자 확인하기
+     * @return 해당 이메일의 사용자가 존재하면 true, 존재하지 않으면 false
+     */
+    public boolean checkExistMemberByEmail(String email) {
+    	Optional<Member> member = memberRepository.findByNickname(email);
+    	
+    	return member.isPresent() ? true : false;
     }
 }

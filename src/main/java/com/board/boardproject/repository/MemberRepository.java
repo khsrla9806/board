@@ -22,4 +22,9 @@ public interface MemberRepository {
      * 사용자 생성
      */
     void save(Member member);
+    
+    /**
+     * 사용자 이메일로 조회
+     */
+    Optional<Member> findByEmail(String email);
 }

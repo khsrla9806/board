@@ -301,9 +301,10 @@ footer {
 }
 
 #address {
-	width: 385px;
+	width: 720px;
 	height: 25px;
 	padding: 5px;
+	margin: 0 3px 0;
 	border-radius: 5px;
 	border: 1px #BDBDBD solid;
 }

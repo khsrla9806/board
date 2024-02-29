@@ -45,7 +45,7 @@
 		
 		<p>주소</p>
 		<div class="address-box">
-			<input id="address" name="address" placeholder="" readonly />
+			<input id="address" name="address" placeholder="주소 검색을 통해 입력해주세요." readonly />
 			<button id="address-search-btn" type="button" onclick="goPopup()">주소검색</button>
 		</div>
 		

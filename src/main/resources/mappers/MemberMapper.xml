@@ -11,6 +11,10 @@
         SELECT * FROM member WHERE nickname = #{nickname}
     </select>
     
+    <select id="findByEmail" resultType="com.board.boardproject.entity.Member">
+        SELECT * FROM member WHERE email = #{email}
+    </select>
+    
     <insert id="save">
     	INSERT INTO member(nickname, password, address, email, created_date, modified_date) 
     	VALUES(#{nickname}, #{password}, #{address}, #{email}, #{createdDate}, #{modifiedDate})
