@@ -67,11 +67,15 @@
 > 게시글 등록 페이지
 
 ### Board Detail Page
-![image](https://github.com/khsrla9806/board/assets/70641477/7a7c9a8b-0e35-4aec-9331-041b5391ecda)
+![image](https://github.com/khsrla9806/board/assets/70641477/f339aa43-ec6e-4ba8-b6f7-c419b9afac74)
 > 게시글 상세 페이지
 
 ![image](https://github.com/khsrla9806/board/assets/70641477/1686904c-4923-4fe9-99b8-50c6a5fbb303)
 > 게시글 수정, 삭제 버튼 활성화 (내가 작성한 게시글인 경우)
+
+![image](https://github.com/khsrla9806/board/assets/70641477/3c8cb7d1-ea5d-412b-816f-33cbcd57afee)
+> 첨부된 파일 다운로드
+
 
 - 로그인 상태, 권한 여부에 따라서 "수정하기", "삭제하기" 버튼의 유무  
 - "뒤로가기" 눌렀을 때, 이전 페이지의 검색 키워드, 페이지 정보를 기억후 돌아감
