@@ -80,6 +80,7 @@ public class BoardService {
 	/**
 	 * 게시글 삭제
 	 */
+	@Transactional
 	public void deleteBoard(Long boardId, LoginMember loginMember) {
 		
 		Board board = boardRepository.findById(boardId)
@@ -89,6 +90,10 @@ public class BoardService {
 			throw new BadRequestException("삭제 권한이 없습니다.");
 		}
 		
+		// 연관된 첨부파일 데이터을 먼저 삭제
+		uploadFileRepository.deleteByBoard(board);
+		
+		// 게시글 데이터를 삭제
 		boardRepository.deleteById(boardId);
 	}
 	

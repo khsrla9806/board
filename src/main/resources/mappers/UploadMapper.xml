@@ -29,4 +29,9 @@
        		board_id = #{board.id}
     </select>
     
+    <delete id='deleteByBoard' parameterType="com.board.boardproject.entity.Board">
+    	DELETE FROM upload_file
+    	WHERE board_id = #{board.id}
+    </delete>
+    
 </mapper>
