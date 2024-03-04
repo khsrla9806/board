@@ -18,6 +18,12 @@ a {
 	background-color: #F2F2F2;
 }
 
+.errorDescription {
+	color: #FA5858;
+	font-size: 11px;
+	margin: 10px 0 20px;
+}
+
 .description {
 	color: #5882FA;
 	font-size: 11px;
@@ -299,7 +305,6 @@ footer {
 #title, #nickname, #password, #password-first, #password-second, #email {
 	width: 830px;
 	height: 25px;
-	margin-bottom: 20px;
 	margin-top: 10px;
 	padding: 5px;
 	border-radius: 5px;

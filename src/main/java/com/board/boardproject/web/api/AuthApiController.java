@@ -18,7 +18,7 @@ public class AuthApiController {
 	 * 존재하는 닉네임인지 확인하기 위해 요청
 	 */
 	@GetMapping("/api/v1/auth/nickname")
-	public String findMemberByNickname(@RequestParam String value) {
+	public String findMemberByNickname(String value) {
 		return memberService.checkExistMemberByNickname(value) ? "fail" : "pass";
 	}
 
