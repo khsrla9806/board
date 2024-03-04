@@ -81,3 +81,10 @@
 - 로그인 상태, 권한 여부에 따라서 "수정하기", "삭제하기" 버튼의 유무  
 - "뒤로가기" 눌렀을 때, 이전 페이지의 검색 키워드, 페이지 정보를 기억후 돌아감
 - 작성일자, 수정일시의 경우 년,월,일,시간,분 포멧으로 출
+
+<br>
+
+## Reference
+- [주소 검색 API 연동](https://velog.io/@ansunny1170/도로명주소-팝업-API-연동-연습)
+- [썸머노트 에디터 적용](https://programmer93.tistory.com/27)
+- [NHN Toast UI 에디터 : 연동하지는 않음](https://congsong.tistory.com/67)
