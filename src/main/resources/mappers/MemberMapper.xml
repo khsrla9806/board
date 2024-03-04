@@ -19,4 +19,14 @@
     	INSERT INTO member(nickname, password, address, email, created_date, modified_date) 
     	VALUES(#{nickname}, #{password}, #{address}, #{email}, #{createdDate}, #{modifiedDate})
     </insert>
+    
+    <update id="update" parameterType="com.board.boardproject.entity.Member">
+    	UPDATE member
+    	SET
+    		nickname = #{member.nickname},
+    		email = #{member.email},
+    		address = #{member.address}
+   		WHERE
+   			id = #{member.id}
+    </update>
 </mapper>

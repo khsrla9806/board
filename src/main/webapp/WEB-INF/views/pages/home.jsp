@@ -13,7 +13,7 @@
 			<div class="search-window">
 				<form action="">
 					<div class="search-wrap">
-						<input id="search" name="search" type="search" placeholder="제목으로 검색하세요." value="">
+						<input id="search" name="search" type="search" placeholder="게시글 제목으로 검색하세요." value="">
 						<button class="btn">검색</button>
 					</div>
 				</form>
@@ -42,18 +42,18 @@
 				
 				<button class="classic-btn" type="button" onClick="location.href='/auth/sign-in-form'">로그인</button>
 				<br>
-				<br>
-				<button class="classic-btn" type="button" onClick="location.href='/auth/sign-up-form'">회원가입</button>
+				<button class="classic-btn" style="margin-top: 5px;" type="button" onClick="location.href='/auth/sign-up-form'">회원가입</button>
 			</c:if>
 			<c:if test="${! empty loginMember}">
 				<div class="user-nickname">
-					${loginMember.nickname}님 환경합니다.
+					${loginMember.nickname}님 환경합니다. 🙂
 				</div>
 				
 				<button class="classic-btn" type="button" onClick="location.href='/board/create-form'">게시글 작성하기</button>
 				<br>
+				<button class="classic-btn" style="margin-top: 5px;" type="button" onClick="location.href='/member/profile-update-form'">내정보 수정</button>
 				<br>
-				<button class="classic-btn" type="button" onClick="logout()">로그아웃</button>
+				<button class="classic-btn" style="margin-top: 5px; background-color: #F8E0E0;" type="button" onClick="logout()">로그아웃</button>
 			</c:if>
 		</div>
 		<div class="side-box">

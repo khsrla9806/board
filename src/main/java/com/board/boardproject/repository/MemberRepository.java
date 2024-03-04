@@ -5,6 +5,7 @@ import com.board.boardproject.entity.Member;
 import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberRepository {
@@ -27,4 +28,9 @@ public interface MemberRepository {
      * 사용자 이메일로 조회
      */
     Optional<Member> findByEmail(String email);
+    
+    /**
+     * 사용자 정보 수정
+     */
+    void update(@Param("member") Member member);
 }

@@ -15,6 +15,8 @@
 			<textarea id="content" name="content" placeholder="내용을 입력해주세요."></textarea>
 		</div>
 		
+		<br>
+		
 		<div>
 			<input id="attachedFile" name="attachedFile" type="file" placeholder="파일을 첨부하세요." />
 		</div>

@@ -5,11 +5,13 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.board.boardproject.common.domain.LoginMember;
 import com.board.boardproject.common.exception.BadRequestException;
 import com.board.boardproject.common.exception.ErrorMessage;
 import com.board.boardproject.common.exception.NotFoundException;
 import com.board.boardproject.entity.Member;
 import com.board.boardproject.repository.MemberRepository;
+import com.board.boardproject.web.dto.ProfileUpdateRequestDto;
 import com.board.boardproject.web.dto.SignInRequestDto;
 import com.board.boardproject.web.dto.SignUpRequestDto;
 
@@ -54,6 +56,26 @@ public class MemberService {
     			.build();
     	
     	memberRepository.save(member);
+    }
+    
+    /**
+     * 회웑 정보 (닉네임, 이메일, 주소) 변경
+     */
+    public Member updateProfile(LoginMember loginMember, ProfileUpdateRequestDto dto) {
+    	if (!loginMember.getId().equals(dto.getMemberId())) {
+    		throw new BadRequestException("내 정보만 수정이 가능합니다.");
+    	}
+    	
+    	Member member = memberRepository.findById(dto.getMemberId())
+    			.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
+    	
+    	member.setNickname(dto.getNickname());
+    	member.setEmail(dto.getEmail());
+    	member.setAddress(dto.getAddress());
+    	
+    	memberRepository.update(member);
+    	
+    	return member;
     }
     
     /**
