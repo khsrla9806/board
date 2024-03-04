@@ -17,6 +17,7 @@ function getBoardsPage(page) {
 	// 여기서 keyword의 Null 처리르 해줘야 한다. (Server까지 가면 그냥 'null'이라는 문자열로 처리된다.)
 	const keyword = params.get('search');
 	if (keyword) { // 여기서 null, undefined, 비어있는 문자 확인
+		document.getElementById('search').value = keyword;
 		requestURL += `&keyword=${keyword}`;
 	}
 	
