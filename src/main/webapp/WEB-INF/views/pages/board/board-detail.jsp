@@ -36,6 +36,21 @@
 		
 		<div class="division-line"></div>
 		
+		<c:if test='${empty boardDetail.attachedFile}'>
+			첨부된 파일이 존재하지 않습니다.
+		</c:if>
+		
+		<c:if test='${not empty boardDetail.attachedFile}'>
+			<div>
+				첨부 파일 : <a href='/api/v1/boards/attach/${boardDetail.id}'>${boardDetail.attachedFile.uploadFileName}</a>
+			</div>
+			<div>
+				<p style='font-size: 12px; margin-top: 5px; color: #2E64FE;'>파일명을 클릭하여 저장할 수 있습니다.</p>
+			</div>
+		</c:if>
+		
+		<div class="division-line"></div>
+		
 		<div class="board-detail-bottom-area">
 			<div class="move-btn-area">
 				<button class="classic-btn" type="button" onClick="moveBack()">뒤로 가기</button>

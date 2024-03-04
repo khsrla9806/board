@@ -43,13 +43,14 @@ public class BoardService {
 		Board board = dto.toEntity(member);
 		boardRepository.save(board);
 		
+		
 		try {
 			Optional<UploadFile> uploadFileOptional = fileStore.storeFile(dto.getAttachedFile());
 			
 			if (uploadFileOptional.isPresent()) {
 				
 				UploadFile uploadFile = uploadFileOptional.get();
-				uploadFile.setBoard(board); // Board와 의존관계를 형성
+				uploadFile.setBoard(board); // 연관된 Board 의존관계를 형성
 				
 				// 업로드된 파일의 정보를 DB에 저장
 				uploadFileRepository.save(uploadFile);
@@ -125,5 +126,23 @@ public class BoardService {
 		UploadFile uploadFile = uploadFileRepository.findByBoard(board);
 		
 		return BoardDetailResponseDto.fromEntity(board, uploadFile);
+	}
+	
+	/**
+	 * 게시글에 첨부된 파일 가져오기
+	 */
+	public UploadFile findAttachedFile(Long boardId) {
+		// 존재하는 게시글인지 확인
+		Board board = boardRepository.findById(boardId)
+				.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
+		
+		// 해당 게시글에 파일이 있는지 확인
+		UploadFile uploadFile = uploadFileRepository.findByBoard(board);
+		
+		if (uploadFile == null) {
+			throw new NotFoundException(ErrorMessage.NOT_FOUND);
+		}
+		
+		return uploadFile;
 	}
 }

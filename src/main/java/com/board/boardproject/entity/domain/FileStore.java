@@ -35,6 +35,13 @@ public class FileStore {
 	}
 	
 	/**
+	 * @return 파일 다운로드에 필요한 Full Resource Path
+	 */
+	public String getFullResourcePath(String fileName) {
+		return "file:" + getFullPath(fileName);
+	}
+	
+	/**
 	 * 단일 파일 업로드
 	 * @return 저장된 파일을 UploadFile 형태로 반환 (Null 방지를 위해 Optional 이용)
 	 */

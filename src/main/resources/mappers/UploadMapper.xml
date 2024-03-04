@@ -5,12 +5,12 @@
 <mapper namespace="com.board.boardproject.repository.UploadFileRepository">
     
     <insert id="save">
-    	INSERT INTO upload_file(
+    	INSERT INTO upload_file (
     		upload_file_name, 
     		store_file_name,
     		board_id
    		) 
-    	VALUES(
+    	VALUES (
     		#{uploadFile.uploadFileName}, 
     		#{uploadFile.storeFileName}, 
     		#{uploadFile.board.id}
