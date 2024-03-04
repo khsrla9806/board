@@ -1,10 +1,13 @@
 package com.board.boardproject.service;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.board.boardproject.common.domain.LoginMember;
 import com.board.boardproject.common.domain.Pagination;
@@ -13,7 +16,10 @@ import com.board.boardproject.common.exception.ErrorMessage;
 import com.board.boardproject.common.exception.NotFoundException;
 import com.board.boardproject.entity.Board;
 import com.board.boardproject.entity.Member;
+import com.board.boardproject.entity.UploadFile;
+import com.board.boardproject.entity.domain.FileStore;
 import com.board.boardproject.repository.BoardRepository;
+import com.board.boardproject.repository.UploadFileRepository;
 import com.board.boardproject.web.dto.BoardDetailResponseDto;
 import com.board.boardproject.web.dto.BoardGetRequestDto;
 import com.board.boardproject.web.dto.BoardResponseDto;
@@ -26,13 +32,33 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class BoardService {
 	private final BoardRepository boardRepository;
+	private final UploadFileRepository uploadFileRepository;
+	private final FileStore fileStore;
 	
 	/**
 	 * 게시글 생성
 	 */
+	@Transactional
 	public void createBoard(BoardCreateRequestDto dto, Member member) {
 		Board board = dto.toEntity(member);
 		boardRepository.save(board);
+		
+		try {
+			Optional<UploadFile> uploadFileOptional = fileStore.storeFile(dto.getAttachedFile());
+			
+			if (uploadFileOptional.isPresent()) {
+				
+				UploadFile uploadFile = uploadFileOptional.get();
+				uploadFile.setBoard(board); // Board와 의존관계를 형성
+				
+				// 업로드된 파일의 정보를 DB에 저장
+				uploadFileRepository.save(uploadFile);
+			}
+			
+		} catch (IOException e) {
+			throw new BadRequestException("잘못된 파일 형식");
+		}
+		
 	}
 	
 	/**
@@ -96,6 +122,8 @@ public class BoardService {
 		Board board = boardRepository.findById(boardId)
 				.orElseThrow(() -> new NotFoundException(ErrorMessage.NOT_FOUND));
 		
-		return BoardDetailResponseDto.fromEntity(board);
+		UploadFile uploadFile = uploadFileRepository.findByBoard(board);
+		
+		return BoardDetailResponseDto.fromEntity(board, uploadFile);
 	}
 }

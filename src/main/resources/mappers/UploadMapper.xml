@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.boardproject.repository.UploadFileRepository">
+    
+    <insert id="save">
+    	INSERT INTO upload_file(
+    		upload_file_name, 
+    		store_file_name,
+    		board_id
+   		) 
+    	VALUES(
+    		#{uploadFile.uploadFileName}, 
+    		#{uploadFile.storeFileName}, 
+    		#{uploadFile.board.id}
+   		)
+    </insert>
+    
+    <select id="findByBoard" parameterType="com.board.boardproject.entity.Board" resultType="com.board.boardproject.entity.UploadFile">
+        SELECT
+        	id,
+        	upload_file_name,
+        	store_file_name,
+        	created_date
+       	FROM
+       		upload_file
+       	WHERE
+       		board_id = #{board.id}
+    </select>
+    
+</mapper>

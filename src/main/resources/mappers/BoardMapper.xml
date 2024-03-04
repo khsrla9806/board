@@ -7,7 +7,11 @@
 	<!-- 게시글 목록 페이징 조회 -->
 	<select id="findAll" parameterType="com.board.boardproject.web.dto.BoardGetRequestDto" resultMap="Board">
 		SELECT
-			b.id, b.title, b.content, b.created_date, b.modified_date,
+			b.id 'b_id', 
+			b.title 'b_title', 
+			b.content 'b_content', 
+			b.created_date 'b_created_date',
+			b.modified_date 'b_modified_date',
         	m.id 'm_id',
         	m.nickname 'm_nickname',
         	m.password 'm_password',
@@ -33,7 +37,11 @@
 	<!-- 내가 작성한 최근 게시글 조회 -->
 	<select id="findByMemberIdWithSize" resultMap="Board">
 		SELECT
-			b.id, b.title, b.content, b.created_date, b.modified_date,
+			b.id 'b_id', 
+			b.title 'b_title', 
+			b.content 'b_content', 
+			b.created_date 'b_created_date',
+			b.modified_date 'b_modified_date',
         	m.id 'm_id',
         	m.nickname 'm_nickname',
         	m.password 'm_password',
@@ -48,7 +56,11 @@
 	<!-- 게시글 단건 조회 -->
     <select id="findById" resultMap="Board">
         SELECT 
-        	b.id, b.title, b.content, b.created_date, b.modified_date,
+        	b.id 'b_id', 
+			b.title 'b_title', 
+			b.content 'b_content', 
+			b.created_date 'b_created_date',
+			b.modified_date 'b_modified_date',
         	m.id 'm_id',
         	m.nickname 'm_nickname',
         	m.password 'm_password',
@@ -59,7 +71,7 @@
     </select>
     
     <!-- 게시글 저장 -->
-    <insert id="save" parameterType="com.board.boardproject.entity.Board">
+    <insert id="save" parameterType="com.board.boardproject.entity.Board" useGeneratedKeys='true' keyProperty='id'>
 		INSERT INTO board(title, content, member_id, created_date, modified_date)
 		VALUES(#{title}, #{content}, #{member.id}, #{createdDate}, #{modifiedDate})
 	</insert>
@@ -83,11 +95,11 @@
 	</resultMap>
 	
 	<resultMap id="Board" type="com.board.boardproject.entity.Board">
-		<id column="id" property="id" />
-		<result column="title" property="title" />
-		<result column="content" property="content" />
-		<result column="created_date" property="createdDate" />
-		<result column="modified_date" property="modifiedDate" />
-		<collection property="member" resultMap="Member" />
+		<id column="b_id" property="id" />
+		<result column="b_title" property="title" />
+		<result column="b_content" property="content" />
+		<result column="b_created_date" property="createdDate" />
+		<result column="b_modified_date" property="modifiedDate" />
+		<association property="member" resultMap="Member" />
 	</resultMap>
 </mapper>

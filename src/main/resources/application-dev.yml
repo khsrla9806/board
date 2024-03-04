@@ -11,6 +11,15 @@ spring:
     init:
       mode: always
         
-
+# 주소 검색 API 승인키
 map-api:
   conformKey: ${DEV_MAP_API_CONFORM_KEY}
+  
+# 파일 저장 경로
+file:
+  dir: C:\Users\Rody\eclipse-workspace\board-bucket\
+
+# 로그 레벨 설정
+logging:
+  level:
+    jdbc.sqlonly: DEBUG

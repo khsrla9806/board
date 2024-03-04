@@ -2,6 +2,8 @@ package com.board.boardproject.web.dto;
 
 import java.time.LocalDateTime;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.board.boardproject.entity.Board;
 import com.board.boardproject.entity.Member;
 
@@ -17,6 +19,9 @@ import lombok.Setter;
 public class BoardCreateRequestDto {
 	private String title;
 	private String content;
+	
+	// 첨부파일
+	private MultipartFile attachedFile;
 	
 	public Board toEntity(Member member) {
 		return Board.builder()
