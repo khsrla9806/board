@@ -74,6 +74,7 @@
 > 게시글 수정, 삭제 버튼 활성화 (내가 작성한 게시글인 경우)
 
 ![image](https://github.com/khsrla9806/board/assets/70641477/3c8cb7d1-ea5d-412b-816f-33cbcd57afee)
+![image](https://github.com/khsrla9806/board/assets/70641477/b04be41c-cb92-46b1-af63-ce24d57d7dfe)
 > 첨부된 파일 다운로드
 
 
