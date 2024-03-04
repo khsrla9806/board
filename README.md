@@ -24,6 +24,8 @@
 ## Implementation
 ### Board
 - `게시글 생성`
+  - 썸머노트 에디터 추가하여 XSS 방지
+  - 단일 파일 업로드 추가
 - `게시글 단건 조회`
 - `게시글 수정`
 - `게시글 삭제`
@@ -44,7 +46,7 @@
 
 ## UI
 ### Main Page
-![image](https://github.com/khsrla9806/board/assets/70641477/36965365-6a92-4baf-8b52-9eca9f7290de)
+![image](https://github.com/khsrla9806/board/assets/70641477/4c36a3d0-bc7c-4274-95e0-07ec03caa04f)
 - 검색할 수 있는 영역
 - 게시글 페이지네이션 목록 리스트
 - 로그인/회원가입/로그아웃 영역
@@ -59,6 +61,10 @@
 
 ![image](https://github.com/khsrla9806/board/assets/70641477/bfc09191-c012-41da-b304-05c68388d123)
 > 로그인 페이지
+
+### Board Create
+![image](https://github.com/khsrla9806/board/assets/70641477/d1dec29f-fb94-467a-bbdd-77336d918d44)
+> 게시글 등록 페이지
 
 ### Board Detail Page
 ![image](https://github.com/khsrla9806/board/assets/70641477/7a7c9a8b-0e35-4aec-9331-041b5391ecda)
